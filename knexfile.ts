@@ -1,20 +1,20 @@
 // Update with your config settings.
-import { IKnexConfigType } from "./src/knex/knexType";
+import { IKnexConfigType } from "./knexType";
 
-export const DB_CONFIGURATION: IKnexConfigType = {
+const DB_CONFIGURATION: IKnexConfigType  = {
   development: {
     client: 'mysql2',
     connection: {
       host: 'localhost',
       user: 'root',
-      password: process.env.PASSWORD,
+      password: '123456',
       database: 'product_management_system'
     },
     migrations: {
-      directory: './src/db/migrations',
+      directory: './schema/migrations',
     },
     seeds: {
-      directory: './src/db/seeds',
+      directory: './schema/seeds',
     },
   },
   production: {
@@ -22,3 +22,4 @@ export const DB_CONFIGURATION: IKnexConfigType = {
     connection: process.env.DB_URL!,
   }
 };
+export default DB_CONFIGURATION;
