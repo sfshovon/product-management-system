@@ -1,0 +1,81 @@
+@baseUrl = http://localhost:5000/categories
+
+POST {{baseUrl}}/create HTTP/1.1
+Content-Type: application/json
+
+{
+    "category_name": "Electronics",
+    "root_id": null
+}
+
+###
+POST {{baseUrl}}/create HTTP/1.1
+Content-Type: application/json
+
+{
+    "category_name": "Accessories",
+    "root_id": 1
+}
+
+###
+POST {{baseUrl}}/create HTTP/1.1
+Content-Type: application/json
+
+{
+    "category_name": "Wearable Accessories",
+    "root_id": 2
+}
+
+###
+POST {{baseUrl}}/create HTTP/1.1
+Content-Type: application/json
+
+{
+    "category_name": "Smart Watch",
+    "root_id": 3
+}
+
+###
+POST {{baseUrl}}/create HTTP/1.1
+Content-Type: application/json
+
+{
+    "category_name": "Portable",
+    "root_id": null
+}
+
+###
+POST {{baseUrl}}/create HTTP/1.1
+Content-Type: application/json
+
+{
+    "category_name": "Men",
+    "root_id": 1
+}
+
+###
+GET {{baseUrl}}/
+
+###
+GET {{baseUrl}}/2
+
+###
+PUT {{baseUrl}}/update/2 HTTP/1.1
+Content-Type: application/json
+
+{
+    "category_name": "Accessories",
+    "root_id": 2
+}
+
+###
+DELETE {{baseUrl}}/delete/4 HTTP/1.1
+Content-Type: application/json
+
+###
+PATCH {{baseUrl}}/deactivation/2
+Content-Type: application/json
+
+{
+  "activation_status": 1
+}

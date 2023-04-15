@@ -6,6 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon --exec npx ts-node ./src/index.ts",
+    "make": "knex migrate:make",
+    "migrate": "knex migrate:latest",
     "build": "npx tsc",
     "serve": "node ./output/index.js"
   },

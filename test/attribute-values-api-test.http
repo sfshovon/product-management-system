@@ -1,0 +1,55 @@
+@baseUrl = http://localhost:5000/attributeValues
+
+POST {{baseUrl}}/create HTTP/1.1
+Content-Type: application/json
+
+{
+    "attribute_value": "S",
+    "attribute_id": 1
+}
+
+###
+POST {{baseUrl}}/create HTTP/1.1
+Content-Type: application/json
+
+{
+    "attribute_value": "M",
+    "attribute_id": 1
+}
+
+###
+POST {{baseUrl}}/create HTTP/1.1
+Content-Type: application/json
+
+{
+    "attribute_value": "Blue",
+    "attribute_id": 2
+}
+
+###
+POST {{baseUrl}}/create HTTP/1.1
+Content-Type: application/json
+
+{
+    "attribute_value": "Red",
+    "attribute_id": 2
+}
+
+###
+GET {{baseUrl}}/
+
+###
+GET {{baseUrl}}/2
+
+###
+PUT {{baseUrl}}/update/1 HTTP/1.1
+Content-Type: application/json
+
+{
+    "attribute_value": "M",
+    "attribute_id": 1
+}
+
+###
+DELETE {{baseUrl}}/delete/2 HTTP/1.1
+Content-Type: application/json

@@ -1,0 +1,97 @@
+@baseUrl = http://localhost:5000/products
+
+POST {{baseUrl}}/create HTTP/1.1
+Content-Type: application/json
+
+{
+  "product_name": "SFS P1",
+  "product_price": 20.20,
+  "product_details": "Product by SFS",
+  "activation_status": true,
+  "categories": [
+    {
+      "id": 1
+    },
+    {
+      "id": 3
+    }
+  ],
+  "attributes": [
+    {
+      "id": 2
+    },
+    {
+      "id": 4
+    }
+  ]
+}
+
+###
+POST {{baseUrl}}/create HTTP/1.1
+Content-Type: application/json
+
+{
+  "product_name": "SFS P2",
+  "product_price": 80.50,
+  "product_details": "P2 by SFS",
+  "activation_status": true,
+  "categories": [
+    {
+      "id": 2
+    },
+    {
+      "id": 4
+    }
+  ],
+  "attributes": [
+    {
+      "id": 1
+    },
+    {
+      "id": 3
+    }
+  ]
+}
+
+###
+GET {{baseUrl}}/
+
+###
+GET {{baseUrl}}/1
+
+###
+GET {{baseUrl}}/activation_status?category=Portable&status=1
+
+###
+GET {{baseUrl}}/search?query=product
+
+###
+DELETE {{baseUrl}}/delete/2 HTTP/1.1
+Content-Type: application/json
+
+###
+PUT {{baseUrl}}/update/1 HTTP/1.1
+Content-Type: application/json
+
+{
+  "product_name": "Updated SFS Product",
+  "product_price": 12.99,
+  "product_details": "This product has been updated by SFS",
+  "activation_status": false,
+  "categories": [
+    {
+      "id": 2
+    },
+    {
+      "id": 4
+    }
+  ],
+  "attributes": [
+    {
+      "id": 1
+    },
+    {
+      "id": 3
+    }
+  ]
+}

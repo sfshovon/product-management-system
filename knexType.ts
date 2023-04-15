@@ -18,6 +18,12 @@ export interface IKnexConfigType extends Knex.Config {
   };
   production: {
     client: string;
-    connection: string;
+    connection: {
+      host: string;
+      port: number;
+      user: string;
+      password: any;
+      database: string;
+    };
   };
 }
