@@ -167,6 +167,51 @@ router.get('/activation-status', (req, res) => __awaiter(void 0, void 0, void 0,
         res.status(500).json({ error: 'Internal Server Error' });
     }
 }));
+// Search products
+router.get('/search', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const query = req.query.query;
+    if (!query) {
+        res.status(400).json({ message: 'Search query is required' });
+        return;
+    }
+    try {
+        const products = yield (0, knex_1.default)('products')
+            .select('products.*', 'categories.name AS category', 'attributes.name AS attribute')
+            .distinct()
+            .innerJoin('product_category', 'products.id', 'product_category.product_id')
+            .innerJoin('categories', 'categories.id', 'product_category.category_id')
+            .innerJoin('product_attribute', 'products.id', 'product_attribute.product_id')
+            .innerJoin('attributes', 'attributes.id', 'product_attribute.attribute_id')
+            .whereRaw('LOWER(products.name) LIKE ?', [`%${query.toLowerCase()}%`])
+            .orWhereRaw('LOWER(categories.name) LIKE ?', [`%${query.toLowerCase()}%`])
+            .orWhereRaw('LOWER(attributes.name) LIKE ?', [`%${query.toLowerCase()}%`]);
+        if (products.length > 0) {
+            res.status(200).json(products);
+        }
+        else {
+            res.status(404).json({ message: 'No products found' });
+        }
+    }
+    catch (error) {
+        res.status(500).json({ message: 'Internal server error' });
+    }
+}));
+// Update Product
+router.put('/update/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { id } = req.params;
+        const { product_name, product_details, product_price } = req.body;
+        const getProduct = yield devDatabase('Products').where({ id }).update({ product_name, product_details, product_price });
+        if (!getProduct) {
+            return res.sendStatus(404);
+        }
+        const updatedProduct = yield devDatabase('Products').where({ id }).first();
+        res.send(updatedProduct);
+    }
+    catch (error) {
+        res.status(500).send({ error: 'An error occurred while updating the product.' });
+    }
+}));
 // Delete Product
 router.delete('/delete/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
