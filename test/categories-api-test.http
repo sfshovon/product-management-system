@@ -45,15 +45,6 @@ Content-Type: application/json
 }
 
 ###
-POST {{baseUrl}}/create HTTP/1.1
-Content-Type: application/json
-
-{
-    "category_name": "Men",
-    "root_id": 1
-}
-
-###
 GET {{baseUrl}}/
 
 ###
@@ -69,7 +60,7 @@ Content-Type: application/json
 }
 
 ###
-DELETE {{baseUrl}}/delete/4 HTTP/1.1
+DELETE {{baseUrl}}/delete/1 HTTP/1.1
 Content-Type: application/json
 
 ###
